@@ -28,7 +28,7 @@ with open(current_class+'.json') as data_file:
 
 # Choose the current image
 #for img_idx in range(1): # (len(data)):
-img_idx = 1 # Les anotacions estan be???
+img_idx = 0 # Les anotacions estan be???
 current_img_name = data[img_idx]['filename']
 print('-- Processing image: '+current_img_name)
 
@@ -51,7 +51,7 @@ if len(data[img_idx]['annotations']) > 0:
         x_max = int(np.max([head[0],tail[0]]))
         y_min = int(np.min([head[1],tail[1]]))
         y_max = int(np.max([head[1],tail[1]]))
-        curr_bbox = [x_min, x_max, y_min, y_max]
+        curr_bbox = [np.max(x_min,0), np.max(x_max,0), np.max(y_min,0), np.max(y_max,0)]
         
         # Add each bounding box
         bbox.append(curr_bbox)
